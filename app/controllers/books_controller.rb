@@ -4,14 +4,13 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
-    @book_show = Book.find(params[:id])
-    @book = Book.new
+    @book = Book.find(params[:id])
+    @book_comment = BookComment.new
   end
 
   def index
     @books = Book.all
     @book = Book.new
-    @user = current_user
   end
 
   def create
@@ -27,8 +26,6 @@ class BooksController < ApplicationController
 
   def edit
   end
-
-
 
   def update
     if @book.update(book_params)
@@ -55,5 +52,4 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
-
 end
